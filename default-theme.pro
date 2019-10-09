@@ -32,7 +32,8 @@ THEMEFILES += \
 #copy needed files to build dir
 
 ##recursively copy the theme folder
-theme_files_copy.commands = $(COPY_DIR) $$PWD/qml/theme $$OUT_PWD/HUDTheme
+theme_files_copy.commands = $(COPY_DIR) $$PWD/qml/theme $$PWD/HUDTheme
+message($${theme_files_copy.commands});
 ##attach the copy command to make target
 first.depends = $(first) theme_files_copy
 ##export variables to global scope
@@ -46,6 +47,8 @@ theme.files = $${PWD}/qml/theme/*
 theme.path = $$PREFIX/themes/default-theme/HUDTheme
 
 INSTALLS += target theme
+
+DESTDIR += $${PWD}
 
 
 
