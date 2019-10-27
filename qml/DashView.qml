@@ -90,5 +90,4 @@ Item {
             source: HUDOverlays[index]
         }
     }
-
 }

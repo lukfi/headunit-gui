@@ -9,8 +9,10 @@
 
 class GUIEvents : public QObject {
     Q_OBJECT
+
 signals:
     void notificationReceived(QVariantMap notification);
+    void guiEventRaised(QString event, QString eventData);
 };
 
 class DefaultTheme : public QQmlExtensionPlugin
@@ -26,6 +28,8 @@ public slots:
 private:
     GUIEvents *guiEvents;
     static QObject *standardPathsProvider(QQmlEngine *engine, QJSEngine *scriptEngine);
+signals:
+    void eventRaised(QString event, QString eventData);
 };
 
 #endif // DEFAULTTHEME_H

@@ -28,6 +28,8 @@ void DefaultTheme::initializeEngine(QQmlEngine *engine, const char* /*uri*/)
             return;
         }
         guiEvents = new GUIEvents();
+        connect(guiEvents, SIGNAL(guiEventRaised(QString, QString)), this, SIGNAL(eventRaised(QString, QString)));
+
         appEngine->addImportPath("themes/default-theme");
         appEngine->rootContext()->setContextProperty("GUIEvents", guiEvents);
         appEngine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
@@ -49,3 +51,4 @@ void DefaultTheme::onEvent(QString event, QString eventData) {
 
     }
 }
+

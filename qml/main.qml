@@ -9,7 +9,7 @@ Window {
     id: window
     visible: true
     title: qsTr("viktorgino's HeadUnit")
-    visibility: Window.Minimized
+    visibility: Window.Windowed
     width: 1200
     height: 800
 
@@ -27,12 +27,24 @@ Window {
     Shortcut {
         sequence: "F11"
         onActivated: {
-            if(window.visibility == Window.FullScreen)
-                window.visibility = Window.Windowed
-            else if(window.visibility == Window.Windowed)
-                window.visibility = Window.Maximized
-            else
+            if(window.visibility == Window.Windowed)
                 window.visibility = Window.FullScreen
+//            else if(window.visibility == Window.FullScreen)
+//                window.visibility = Window.Maximized
+            else
+                window.visibility = Window.Windowed
+        }
+    }
+    Item {
+        anchors.fill: parent
+        focus: true
+        Keys.onPressed: {
+            console.log("Key pressed!", event.key)
+            event.accepted = true;
+            GUIEvents.guiEventRaised("KEY", event.key);
+//            if (event.key == Qt.Key_Left) {
+//                console.log("move left");
+//            }
         }
     }
 }
