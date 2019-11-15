@@ -39,7 +39,6 @@ Window {
         anchors.fill: parent
         focus: true
         Keys.onPressed: {
-            console.log("Key pressed!", event.key)
             event.accepted = true;
             GUIEvents.guiEventRaised("KEY", event.key);
 //            if (event.key == Qt.Key_Left) {
