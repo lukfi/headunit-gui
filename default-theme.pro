@@ -1,6 +1,6 @@
 TEMPLATE = lib
 CONFIG += c++11 plugin link_pkgconfig
-QT += qml quick
+QT += qml quick widgets
 TARGET = $$qtLibraryTarget(default-theme)
 
 INCLUDEPATH += $${PWD}/quickcross
