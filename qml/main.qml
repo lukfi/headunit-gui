@@ -23,6 +23,9 @@ Window {
     DashView{
         id: dashview
         anchors.fill: parent
+        onCurrentVisible: {
+            GUIEvents.guiEventRaised("CURRENT", index);
+        }
     }
     Shortcut {
         sequence: "F11"

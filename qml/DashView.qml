@@ -1,11 +1,13 @@
 import QtQuick 2.5
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 1.4
-import "ClimateControl"
+//import "ClimateControl"
 import HUDTheme 1.0
 
 Item {
     id: dashLayout
+
+    signal currentVisible(string index)
 
     LinearGradient {
         anchors.fill: parent
@@ -47,6 +49,8 @@ Item {
     }
 
     RightMenu {
+        property int lastItemIndex: -1
+
         id: rightMenu
         width: height/5
         anchors.right: parent.right
@@ -56,11 +60,18 @@ Item {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
         onItemChanged:{
-            if(contents.count > 0){
-                for(var i=0; i<contents.count;i++){
-                    contents.itemAt(i).visible = false
+            if (lastItemIndex != index)
+            {
+                lastItemIndex = index
+                //console.log("OnItemChanged", index)
+                if(contents.count > 0){
+                    for(var i=0; i<contents.count;i++){
+                        contents.itemAt(i).visible = false
+                    }
+                    //console.log("Current visible index", index, menuItems[index].pluginname)
+                    currentVisible(menuItems[index].pluginname)
+                    contents.itemAt(index).visible = true
                 }
-                contents.itemAt(index).visible = true
             }
         }
     }
